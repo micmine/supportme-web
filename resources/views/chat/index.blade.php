@@ -1,7 +1,5 @@
 @extends('layouts.dash')
 
 @section('content')
-<div class="card chat-conntent m-1">
-    hi
-</div>
+    <h1>Chat</h1>
 @endsection
