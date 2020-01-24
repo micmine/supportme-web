@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Chat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +55,23 @@ class ChatController extends Controller
      * @param  \App\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function show(Chat $chat)
+    public function show(Chat $chat = null)
     {
-        return view('chat.show');
+        if ($chat === null) {
+            $chat = Auth::user()->chats()->first();
+        }
+
+        if (Auth::user()->isUser()) {
+            if (!Auth::user()->chats()->where('name', $chat->name)->exists()) {
+                abort(404);
+            }
+        }
+
+        return view('chat.show', [
+            'chat' => $chat,
+            // side bar
+            'chats' => Auth::user()->chats
+        ]);
     }
 
     /**

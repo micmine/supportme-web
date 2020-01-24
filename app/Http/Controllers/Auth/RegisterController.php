@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Chat;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -71,8 +72,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        $chat = Chat::create([
+            'name' => $data['name']
+        ]);
+
         $goup = Group::all()->where('name', 'user')->first();
 
+        $chat->addUser($user);
         $goup->addUser($user);
 
         return $user;

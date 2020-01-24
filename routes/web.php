@@ -14,3 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/chat', 'ChatController@show')->name('chat.show.own');
+Route::get('/chat/{chat}', 'ChatController@show')->name('chat.show');
+

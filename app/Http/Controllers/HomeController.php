@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $chats = Auth::user()->chats;
+
+        if ($chats->count() === 1) {
+            if (Auth::user()->isUser()) {
+                $chat = $chats->first->name;
+                return redirect(route('chat.show.own'));
+            }
+        }
+        return view('home', [
+            // side bar
+            'chat_num' => Auth::user()->chats->count(),
+            'chats' => Auth::user()->chats
+        ]);
     }
 }

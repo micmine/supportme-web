@@ -74,26 +74,15 @@
 
         <main class="row">
             <div class="col-3">
-                <div class="col-12 card p-2 m-1">
-                    <small>
-                        <h2 class="">micmine</h2>
-                    </small>
-                </div>
-                <div class="col-12 card p-2 m-1">
-                    <small>
-                        <h2 class="">micmine</h2>
-                    </small>
-                </div>
-                <div class="col-12 card p-2 m-1">
-                    <small>
-                        <h2 class="">micmine</h2>
-                    </small>
-                </div>
-                <div class="col-12 card p-2 m-1">
-                    <small>
-                        <h2 class="">micmine</h2>
-                    </small>
-                </div>
+                @foreach ($chats as $chat)
+                    <div class="col-12 card p-2 m-1">
+                        <small>
+                            <a href="{{ route('chat.show', ['chat' => $chat]) }}">
+                                <h2 class="">{{ $chat->name }}</h2>
+                            </a>
+                        </small>
+                    </div>
+                @endforeach
             </div>
             <div class="col-9 pl-0">
                 @yield('content')

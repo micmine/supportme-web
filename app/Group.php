@@ -17,4 +17,8 @@ class Group extends Model
     public function removeUser(User $user) {
         return $this->users()->detach($user);
     }
+
+    public function chats() {
+        return $this->belongsToMany('App\Chat', 'entity_chat', 'group_id', 'id');
+    }
 }
