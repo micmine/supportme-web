@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $chats = Auth::user()->chats;
+        $chats = Auth::user()->chats()->get();
 
         if ($chats->count() === 1) {
             if (Auth::user()->isUser()) {
