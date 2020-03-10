@@ -56,7 +56,7 @@ class CreateChatsTable extends Migration
             $table->foreign('chat_id')->references('id')->on('chats')->onDelete('cascade');
         });
 
-        Schema::create('chatmessage', function (Blueprint $table) {
+        Schema::create('chat_messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('chat_id');
             $table->string('message')->nullable();

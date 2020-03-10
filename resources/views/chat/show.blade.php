@@ -4,10 +4,12 @@
 
 <h1 class="text-center mt-5 pt-5">{{ $chat->name }}</h1>
 
+<p>here is some text</p>
+
 @forelse ($messages as $message)
-    {{ $message->message }}
+    <p>{{ $message }}</p>
 @empty
-    no messages
+    <p>No messages</p>
 @endforelse
 
 @endsection
