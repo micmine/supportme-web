@@ -42,18 +42,7 @@ class User extends Authenticatable
     }
 
     public function chats() {
-        $user_chat = $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
-        $group_chat = collect();
-
-        $groups = $this->groups();
-
-        foreach ($groups as $group) {
-            $chats = $group->chats();
-
-            $group_chat = $group_chat->merge($chats);
-        }
-
-        return $user_chat->merge($group_chat)->all();
+        return $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
     }
 
     public function isUser() {

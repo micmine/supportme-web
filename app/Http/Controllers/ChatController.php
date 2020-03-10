@@ -67,8 +67,11 @@ class ChatController extends Controller
             }
         }
 
+        $messages = $chat->messages;
+
         return view('chat.show', [
             'chat' => $chat,
+            'messages' => $messages,
             // side bar
             'chats' => Auth::user()->chats
         ]);
