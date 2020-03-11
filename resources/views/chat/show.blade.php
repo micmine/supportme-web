@@ -1,15 +1,39 @@
 @extends('layouts.dash')
 
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+@endsection
+
 @section('content')
 
-<h1 class="text-center mt-5 pt-5">{{ $chat->name }}</h1>
+<h1 class="">{{ $chat->name }}</h1>
 
-<p>here is some text</p>
+<div class="chat-container">
+    @forelse ($messages as $message)
+        <div class="chat-message {{ Auth::user()->id == $message->user_id ? 'chat-message-right' : 'chat-message-left' }}">
+            <a href="">{{ App\User::find($message->user_id)->email }}</a>
+            <p>{{ $message->message }}</p>
+        </div>
+    @empty
+        <div class="chat-message chat-message-left">
+            <a href="">user@example.com</a>
+            <p>Hello</p>
+        </div>
 
-@forelse ($messages as $message)
-    <p>{{ $message }}</p>
-@empty
-    <p>No messages</p>
-@endforelse
+        <div class="chat-message chat-message-right">
+            <a href="">user@example.com</a>
+            <p>Hello</p>
+        </div>
+    @endforelse
+</div>
+
+<form action="{{ route('chatmessage.store') }}" method="POST" class="chat-form">
+    @csrf
+    <div class="row">
+        <input type="hidden" name="chat_id" value="{{ $chat->id}}">
+        <input type="text" class="form-control col-10 pr-1" name="message" placeholder="message">
+        <button type="submit" class=" col-2 btn btn-primary">send</button>
+    </div>
+</form>
 
 @endsection

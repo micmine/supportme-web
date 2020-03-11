@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChatMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatMessageController extends Controller
 {
@@ -45,7 +46,24 @@ class ChatMessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'chat_id' => 'required',
+            'message' => 'required|max:255',
+        ]);
+
+        $chatMessage = new ChatMessage();
+
+        $chatMessage->message = request('message');
+        $chatMessage->chat_id = request('chat_id');
+        $chatMessage->user_id = Auth::user()->id;
+
+        $chatMessage->save();
+
+        if (Auth::user()->isUser()) {
+            return redirect()->route('chat.show.own');
+        } else {
+            return redirect()->route('chat.show', ['chat' => request('chat_id')]);
+        }
     }
 
     /**
