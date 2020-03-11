@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dash.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -73,20 +75,26 @@
         </nav>
 
         <main class="row">
-            <div class="col-3">
-                @foreach ($chats as $chat)
-                    <div class="col-12 card p-2 m-1">
-                        <small>
-                            <a href="{{ route('chat.show', ['chat' => $chat]) }}">
-                                <h2 class="">{{ $chat->name }}</h2>
-                            </a>
-                        </small>
-                    </div>
-                @endforeach
-            </div>
-            <div class="col-9 pl-0">
-                @yield('content')
-            </div>
+            @if (Illuminate\Support\Facades\Auth::user()->isUser())
+                <div class="container pl-0 chat-content">
+                    @yield('content')
+                </div>
+            @else
+                <div class="col-3">
+                    @foreach ($chats as $chat)
+                        <div class="col-12 card p-2 m-1">
+                            <small>
+                                <a href="{{ route('chat.show', ['chat' => $chat]) }}">
+                                    <h2 class="">{{ $chat->name }}</h2>
+                                </a>
+                            </small>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-9 pl-0 chat-content">
+                    @yield('content')
+                </div>
+            @endif
         </main>
     </div>
 </body>
