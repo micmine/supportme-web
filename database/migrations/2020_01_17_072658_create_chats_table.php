@@ -25,7 +25,7 @@ class CreateChatsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('user_group', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('group_id');

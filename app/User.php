@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function groups() {
-        return $this->belongsToMany('App\Group', 'user_group', 'group_id', 'user_id');
+        return $this->belongsToMany(Group::class);
     }
 
     public function chats() {
@@ -46,6 +46,6 @@ class User extends Authenticatable
     }
 
     public function isUser() {
-        return $this->groups()->where('name', 'user')->exists();
+        return !$this->groups()->where('name', 'admin')->exists();
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     public function users() {
-        return $this->belongsToMany('App\User', 'user_group', 'user_id', 'group_id');
+        return $this->belongsToMany(User::class);
     }
 
     public function addUser(User $user) {
