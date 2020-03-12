@@ -1,5 +1,6 @@
 .chat-container {
-    display: block;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .chat-message {
@@ -23,10 +24,15 @@
 
 .chat-message-right {
     text-align: right;
+    align-self: flex-end;
 
     a {
         display: none;
     }
+}
+
+.chat-message-left {
+    align-self: flex-start;
 }
 
 .chat-form {
