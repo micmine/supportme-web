@@ -74,7 +74,7 @@
             </div>
         </nav>
 
-        <main class="row">
+    <main class="row {{ Illuminate\Support\Facades\Auth::user()->isUser() ? '' : 'm-5' }}">
             @if (Illuminate\Support\Facades\Auth::user()->isUser())
                 <div class="container pl-0 chat-content">
                     @yield('content')

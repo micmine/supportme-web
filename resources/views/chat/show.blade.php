@@ -15,14 +15,8 @@
             <p>{{ $message->message }}</p>
         </div>
     @empty
-        <div class="chat-message chat-message-left">
-            <a href="">user@example.com</a>
-            <p>Hello</p>
-        </div>
-
-        <div class="chat-message chat-message-right">
-            <a href="">user@example.com</a>
-            <p>Hello</p>
+        <div class="chat-message center">
+            <p>Here are no messages</p>
         </div>
     @endforelse
 </div>
