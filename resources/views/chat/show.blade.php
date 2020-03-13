@@ -21,14 +21,16 @@
         @endforelse
     </div>
 
-    <form action="{{ route('chatmessage.store') }}" method="POST" class="chat-form">
-        @csrf
-        <div class="row">
-            <input type="hidden" name="chat_id" value="{{ $chat->id}}">
-            <input type="text" class="form-control col-10 pr-1" name="message" placeholder="message">
-            <button type="submit" class=" col-2 btn btn-primary">send</button>
-        </div>
-    </form>
+    <footer class="chat-form">
+        <form action="{{ route('chatmessage.store') }}" method="POST">
+            @csrf
+            <div class="row">
+                <input type="hidden" name="chat_id" value="{{ $chat->id}}">
+                <input type="text" class="form-control col-10 pr-1" name="message" placeholder="message">
+                <button type="submit" class=" col-2 btn btn-primary">send</button>
+            </div>
+        </form>
+    </footer>
 </div>
 
 @endsection

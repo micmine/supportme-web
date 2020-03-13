@@ -1,15 +1,21 @@
+@import 'variables';
+
+$message-hight-padding: 5px;
+$message-with-padding: $message-hight-padding * 2;
+
 .chat-page {
     .chat-container {
         display: flex;
         flex-flow: column nowrap;
 
         .chat-message {
-            background-color: #1eb2a6;
+            background-color: $blue;
             color: white;
             border-radius: 5px;
-            padding-top: 1px;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-top: $message-hight-padding;
+            padding-left: $message-with-padding;
+            padding-right: $message-with-padding;
+            padding-bottom: $message-hight-padding;
             margin-bottom: 1vh;
 
             a {
