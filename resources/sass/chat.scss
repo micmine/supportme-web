@@ -9,13 +9,14 @@ $message-with-padding: $message-hight-padding * 2;
         flex-flow: column nowrap;
 
         .chat-message {
+            position: relative;
             color: white;
             border-radius: 5px;
             padding-top: $message-hight-padding;
             padding-left: $message-with-padding;
             padding-right: $message-with-padding;
             padding-bottom: $message-hight-padding;
-            margin-bottom: 1vh;
+            margin-bottom: 1.3vh;
 
             a {
                 font-size: .8rem;
@@ -25,6 +26,31 @@ $message-with-padding: $message-hight-padding * 2;
             p {
                 margin-bottom: 0;
             }
+        }
+
+        .chat-message:after {
+            content: '';
+	        position: absolute;
+	        bottom: 0;
+	        width: 0;
+	        height: 0;
+	        border: 9px solid transparent;
+	        border-bottom: 0;
+	        margin-left: -4.5px;
+	        margin-bottom: -9px;
+        }
+
+
+        .chat-message-right:after {
+	        right: 5px;
+	        border-top-color: lighten($green, 2%);
+	        border-right: 0;
+        }
+
+        .chat-message-left:after {
+	        left: 10px;
+	        border-top-color: lighten($blue, 2%);
+	        border-left: 0;
         }
 
         .chat-message-right {
