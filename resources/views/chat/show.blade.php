@@ -11,7 +11,7 @@
     <div class="chat-container chat-push">
         @forelse ($messages as $message)
             <div class="chat-message {{ Auth::user()->id == $message->user_id ? 'chat-message-right' : 'chat-message-left' }}">
-                <a href="">{{ App\User::find($message->user_id)->email }}</a>
+                <a href="">{{ App\User::find($message->user_id)->name }}</a>
                 <p>{{ $message->message }}</p>
             </div>
         @empty
