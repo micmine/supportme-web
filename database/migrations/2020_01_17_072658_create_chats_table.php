@@ -78,7 +78,25 @@ class CreateChatsTable extends Migration
 
         DB::table('groups')->insert(
             array(
-                'name' => 'admin'
+                'name' => 'team'
+            )
+        );
+
+        DB::table('groups')->insert(
+            array(
+                'name' => 'supportlevel-1'
+            )
+        );
+
+        DB::table('groups')->insert(
+            array(
+                'name' => 'supportlevel-2'
+            )
+        );
+
+        DB::table('groups')->insert(
+            array(
+                'name' => 'supportlevel-3'
             )
         );
     }

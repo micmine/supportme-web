@@ -74,7 +74,7 @@ class ChatController extends Controller
             'chat' => $chat,
             'messages' => $messages,
             // side bar
-            'chats' => Auth::user()->chats
+            'chats' => Chat::all()
         ]);
     }
 

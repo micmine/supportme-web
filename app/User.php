@@ -42,6 +42,22 @@ class User extends Authenticatable
     }
 
     public function chats() {
+        /*
+        $chats = [];
+
+        foreach (Auth::user()->chats()->get() as $chat) {
+            array_push($chats, $chat);
+        }
+
+        
+        foreach ($this->groups()->get() as $group) {
+            foreach ($group->chats()->get() as $chat) {
+                array_push($chats, $chat);
+            }
+        }
+        
+        return collection(array_unique($chats));
+        */
         return $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
     }
 
