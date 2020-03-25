@@ -1,8 +1,7 @@
 # supportme-web
 
-## This is a support platform on a per user base.
+## General conditions
 
-General conditions
 The goal is to build a support system for companies that want to move away from phone support or reduce it. But who need a stable and fast system. 
 
 A support system for all companies and products.
