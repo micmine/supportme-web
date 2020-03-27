@@ -85,7 +85,7 @@
                         <div class="col-12 card p-2 m-1">
                             <small>
                                 <a href="{{ route('chat.show', ['chat' => $chat]) }}">
-                                    <h2 class="">{{ $chat->name }}</h2>
+                                    <p class="h3">{{ $chat->name }}</p>
                                 </a>
                             </small>
                         </div>
