@@ -24,7 +24,7 @@ class HomeController extends Controller
 	 */
 	public function index()
 	{
-		$chats = Auth::user()->chats()->get();
+		$chats = Auth::user()->chats();
 
 		if ($chats->count() === 1) {
 			if (Auth::user()->isUser()) {
@@ -34,8 +34,8 @@ class HomeController extends Controller
 		}
 		return view('home', [
 			// side bar
-			'chat_num' => Auth::user()->chats->count(),
-			'chats' => Auth::user()->chats
+			//'chat_num' => Auth::user()->chats->count(),
+			'chats' => $chats
 		]);
 	}
 }

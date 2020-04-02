@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,23 +44,22 @@ class User extends Authenticatable
 
 	public function chats()
 	{
-		/*
-        $chats = [];
+		$chats = collect();
+		//ddd(Auth::user()->chats()->get());
+		foreach ($this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id')->get() as $chat) {
+			$chats->push($chat);
+		}
 
-        foreach (Auth::user()->chats()->get() as $chat) {
-            array_push($chats, $chat);
-        }
 
-        
-        foreach ($this->groups()->get() as $group) {
-            foreach ($group->chats()->get() as $chat) {
-                array_push($chats, $chat);
-            }
-        }
-        
-        return collection(array_unique($chats));
-        */
-		return $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
+		foreach ($this->groups()->get() as $group) {
+			foreach ($group->chats()->get() as $chat) {
+				$chats->push($chat);
+			}
+		}
+
+		return $chats;
+
+		//	return $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
 	}
 
 	public function isUser()
