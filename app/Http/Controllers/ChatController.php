@@ -63,7 +63,13 @@ class ChatController extends Controller
 		}
 
 		if (Auth::user()->isUser()) {
-			if (!Auth::user()->chats()->where('name', $chat->name)->exists()) {
+			$available = Auth::user()->chats()->where('name', $chat->name)->first();
+
+			if ($available != null) {
+				if (!$available->exists()) {
+					abort(403);
+				}
+			} else {
 				abort(404);
 			}
 		}
@@ -74,7 +80,7 @@ class ChatController extends Controller
 			'chat' => $chat,
 			'messages' => $messages,
 			// side bar
-			'chats' => Chat::all()
+			'chats' => Auth::user()->chats()
 		]);
 	}
 
