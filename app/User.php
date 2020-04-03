@@ -46,7 +46,7 @@ class User extends Authenticatable
 	{
 		$chats = collect();
 		//ddd(Auth::user()->chats()->get());
-		foreach ($this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id')->get() as $chat) {
+		foreach ($this->belongsToMany('App\Chat', 'entity_chat', 'chat_id', 'user_id')->get() as $chat) {
 			$chats->push($chat);
 		}
 
@@ -57,8 +57,8 @@ class User extends Authenticatable
 			}
 		}
 
-		return $chats;
 
+		return $chats;
 		//	return $this->belongsToMany('App\Chat', 'entity_chat', 'user_id', 'id');
 	}
 
