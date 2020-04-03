@@ -48,12 +48,16 @@ class ChatMessageController extends Controller
 	{
 		$request->validate([
 			'chat_id' => 'required',
-			'message' => 'required|max:255',
 		]);
 
 		$chatMessage = new ChatMessage();
 
-		$chatMessage->message = request('message');
+		if (request()->exists('message')) {
+			$chatMessage->message = request('message');
+		}
+		if (request('template') != 0) {
+			$chatMessage->template_id = request('template');
+		}
 		$chatMessage->chat_id = request('chat_id');
 		$chatMessage->user_id = Auth::user()->id;
 

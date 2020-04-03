@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Template;
 use App\ChatMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,12 +76,15 @@ class ChatController extends Controller
 		}
 
 		$messages = ChatMessage::where('chat_id', $chat->id)->get();
+		$templates = Template::all();
 
 		return view('chat.show', [
 			'chat' => $chat,
 			'messages' => $messages,
 			// side bar
-			'chats' => Auth::user()->chats()
+			'chats' => Auth::user()->chats(),
+			// form
+			'templates' => $templates
 		]);
 	}
 

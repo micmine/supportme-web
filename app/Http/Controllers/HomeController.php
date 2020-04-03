@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Template;
+
 class HomeController extends Controller
 {
 	/**
@@ -32,10 +34,15 @@ class HomeController extends Controller
 				return redirect(route('chat.show.own'));
 			}
 		}
+
+		$templates = Template::all();
+
 		return view('home', [
 			// side bar
-			//'chat_num' => Auth::user()->chats->count(),
-			'chats' => $chats
+			'chat_num' => $chats->count(),
+			'chats' => $chats,
+			// form
+			'templates' => $templates
 		]);
 	}
 }
