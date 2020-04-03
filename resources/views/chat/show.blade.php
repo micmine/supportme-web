@@ -7,6 +7,23 @@
 @section('content')
 
 	<h1 class="">{{ $chat->name }}</h1>
+	@if (!Auth::user()->isUser())
+		<div class="p-2">
+			<h3>supportlevel-{{ $chat->getSupportLevel() }}</h3>
+			<form method="POST" action="{{ route('chat.setlevel', ['chat' => $chat->id]) }}">
+				@csrf
+				@method('PUT')
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<label class="btn btn-secondary active">
+						<input type="submit" name="direction" value="down" autocomplete="off" {{ $chat->getSupportLevel() == 1 ? 'disabled' : '' }}> down
+					</label>
+					<label class="btn btn-secondary">
+						<input type="submit" name="direction" value="up" autocomplete="off" {{ $chat->getSupportLevel() == 3 ? 'disabled' : '' }}> up
+					</label>
+				</div>
+			</form>
+		</div>
+	@endif
 	<div class="chat-page">
 		<div class="chat-container chat-push">
 			@forelse ($messages as $message)

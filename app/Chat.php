@@ -52,4 +52,16 @@ class Chat extends Model
 	{
 		return $this->hasMany('App\ChatMessage');
 	}
+
+	public function getSupportLevel()
+	{
+		$out = 1;
+		foreach ($this->groups()->get() as $group) {
+			if (strpos($group->name, 'supportlevel-') === 0) {
+				$out = substr($group->name, -1);
+			}
+		}
+
+		return $out;
+	}
 }
