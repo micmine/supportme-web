@@ -22,6 +22,7 @@ then
 	tmux new-window -t $SESSION:5 -n 'shell'
 	tmux send-keys -t 'shell' "bash" C-m
 
+	tmux kill-window -t 0
 fi
 
 tmux attach-session -t $SESSION:1
