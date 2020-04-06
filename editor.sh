@@ -11,7 +11,7 @@ then
 	tmux send-keys -t 'edit' 'nvim' C-m
 
 	tmux new-window -t $SESSION:2 -n 'php'
-	tmux send-keys -t 'php' "php artisan serve" C-m
+	tmux send-keys -t 'php' "php artisan serve --host dione.fritz.box" C-m
 
 	tmux new-window -t $SESSION:3 -n 'npm'
 	tmux send-keys -t 'npm' 'npm run watch-poll' "" C-m

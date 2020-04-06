@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/chat.css": "/css/chat.css",
-    "/css/dash.css": "/css/dash.css"
+    "/css/dash.css": "/css/dash.css",
+    "/js/chat.js": "/js/chat.js"
 }
