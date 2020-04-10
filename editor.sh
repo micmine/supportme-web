@@ -7,7 +7,7 @@ if [ "$SESSIONEXISTS" = "" ]
 then
 	tmux new-session -d -s $SESSION
 
-	tmux new-window -t $SESSION:1 -n 'edit'
+	tmux rename-window -t $SESSION:1 'edit'
 	tmux send-keys -t 'edit' 'nvim' C-m
 
 	tmux new-window -t $SESSION:2 -n 'php'
@@ -21,8 +21,6 @@ then
 
 	tmux new-window -t $SESSION:5 -n 'shell'
 	tmux send-keys -t 'shell' "bash" C-m
-
-	tmux kill-window -t 0
 fi
 
 tmux attach-session -t $SESSION:1
