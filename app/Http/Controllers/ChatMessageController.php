@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ChatMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ChatMessageController extends Controller
 {
@@ -62,6 +63,7 @@ class ChatMessageController extends Controller
 		$chatMessage->user_id = Auth::user()->id;
 
 		$chatMessage->save();
+		Log::info('[user:' . Auth::user()->id . '] created chatMessage => [' . request('message') . ', ' . request('template') . ']');
 
 		if (Auth::user()->isUser()) {
 			return redirect()->route('chat.show.own');

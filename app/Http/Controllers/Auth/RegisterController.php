@@ -9,6 +9,7 @@ use App\User;
 use App\Group;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -82,6 +83,8 @@ class RegisterController extends Controller
 
 		$chat->addUser($user);
 		$group->addUser($user);
+
+		Log::info('created User,Chat => [' . $data['name']);
 
 		return $user;
 	}
