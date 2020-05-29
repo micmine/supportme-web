@@ -8,6 +8,7 @@ use App\ChatMessage;
 use App\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ChatController extends Controller
 {
@@ -128,6 +129,8 @@ class ChatController extends Controller
 		}
 		$chat->removeGroup(Group::where('name', 'supportlevel-' . $current)->first());
 		$chat->addGroup(Group::where('name', 'supportlevel-' . $next)->first());
+
+		Log::info("Set supportlevel of chat => [" . $chat->id . "] to [" . $next . "]");
 
 		if (Auth::user()->isUser()) {
 			return redirect()->route('chat.show.own');
