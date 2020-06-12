@@ -116,9 +116,9 @@ class CreateChatsTable extends Migration
 	public function down()
 	{
 		Schema::dropIfExists('chats');
-		Schema::dropIfExists('templates');
 		Schema::dropIfExists('groups');
 		Schema::dropIfExists('chatmessage');
 		Schema::dropIfExists('entity_chat');
+		Schema::dropIfExists('templates');
 	}
 }
