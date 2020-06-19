@@ -20,10 +20,6 @@ class ChatMessages extends Migration
 			$table->string('message')->nullable();
 			$table->unsignedBigInteger('template_id')->nullable();
 			$table->timestamps();
-
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('chat_id')->references('id')->on('chats')->onDelete('cascade');
-			$table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
 		});
     }
 
