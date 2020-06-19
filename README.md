@@ -10,4 +10,19 @@ An easy way to help the customer with problems.
 The following objects are to be implemented. There should be users who have further information Users also have login data. Users can be in a group.
 These groups can have permissions. Users can be in a chat. There should be predefined messages.
 
+## Manage Team members
 
+use cli
+```bash
+php artisan tinker
+```
+
+Add user to team (required also for every supporter)
+```php
+Group::where("name", "team")->first()->addUser(User::where("email", "hans@gmail.com")->first())
+```
+
+Add user to supportlevel-1
+```php
+Group::where("name", "supportlevel-1")->first()->addUser(User::where("email", "hans@gmail.com")->first())
+```
