@@ -10,6 +10,17 @@ An easy way to help the customer with problems.
 The following objects are to be implemented. There should be users who have further information Users also have login data. Users can be in a group.
 These groups can have permissions. Users can be in a chat. There should be predefined messages.
 
+# Test
+
+```bash
+php artisan serve --env=dust.local
+```
+
+```bash
+php artisan dusk --env=dust.local
+```
+
+
 ## Manage Team members
 
 use cli
