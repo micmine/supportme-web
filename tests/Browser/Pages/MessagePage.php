@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 
-class LoginPage extends Page
+class MessagePage extends Page
 {
 	/**
 	 * Get the URL for the page.
@@ -16,12 +16,17 @@ class LoginPage extends Page
 		return '/login';
 	}
 
-	public function loginUser(Browser $browser, $email = null, $password = null) {
-		$browser->type('@email', $email)
-			->type('@password', $password)
-            ->press('Login')
-            ->screenshot('after_login');
-	}
+	public function send(Browser $browser, $chat = null, $message = null) {
+        $browser->visit('/chat')
+            ->screenshot('help')
+            ->type('@message', $message)
+			->press('send');
+    }
+
+    public function receive(Browser $browser, $chat = null , $message = null) {
+        $browser->visit('/chat/' . $chat)
+            ->assertSee($message);
+    }
 
 	/**
 	 * Assert that the browser is on the page.
@@ -42,8 +47,7 @@ class LoginPage extends Page
 	public function elements()
 	{
 		return [
-			'@email' => 'input[name="email"]',
-			'@password' => '#password'
+			'@message' => 'input[name="message"]'
 		];
 	}
 }
